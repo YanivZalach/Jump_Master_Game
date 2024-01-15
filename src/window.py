@@ -15,6 +15,8 @@ class Window:
         window.config(background=Consts.BACKGROUND)
         # In the needed geometry
         window.geometry((str)(Consts.WIDTH) + "x" + (str)(Consts.HIGHT))
+        # In the case of closing the window
+        window.protocol("WM_DELETE_WINDOW", lambda: Window.on_closing(window))
 
 
 
@@ -36,3 +38,12 @@ class Window:
         bird_ball = canvas.create_oval(*coordinates, fill=Consts.BIRD_COLOR)
         return bird_ball
 
+    @staticmethod
+    # Stopping the game
+    def on_closing(window):
+        # This function will be called when the user tries to close the window
+        global run_game
+        run_game = False
+        # give some time to stop the for loop before destroying window
+        print("Window is closing. Performing cleanup or showing a message.")
+        window.after(Consts.CLOSE_WINDOW, window.destroy())  # Close the window
