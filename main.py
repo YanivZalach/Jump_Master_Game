@@ -42,7 +42,10 @@ def main():
             # Frame rate
             time.sleep(Consts.FRAME_RATE)  
 
-    except KeyboardInterrupt:
+    except Exception as e:
+        if Consts.DEBUG:
+            print("The Error: "+e.__str__())
+    finally:
         print("Thaks for playing")
 
     window.mainloop()

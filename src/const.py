@@ -4,6 +4,8 @@ from typing import Tuple
 
 
 class Consts:
+    # Debug mode
+    DEBUG : bool = True
     # Color
     BACKGROUND : str = "yellow"
     BIRD_COLOR : str = "red"
