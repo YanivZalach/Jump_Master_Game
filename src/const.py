@@ -30,6 +30,7 @@ class Consts:
     CLOSE_WINDOW : float = 1000
     # Bird movement
     VX : int = 2
-    VY : float = 1
-    A : float = 0.5
+    VY : float = 0.5 * HIGHT / (WIDTH/VX)  # So it will have the time to get from top to bottom in a round (Physics) * 0.5
+    A : float = 2 * 2 * HIGHT / (WIDTH/VX)**2
+    JUMP : float = -70*A 
 

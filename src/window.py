@@ -42,8 +42,7 @@ class Window:
     # Stopping the game
     def on_closing(window):
         # This function will be called when the user tries to close the window
-        global run_game
-        run_game = False
         # give some time to stop the for loop before destroying window
-        print("Window is closing. Performing cleanup or showing a message.")
+        print("Window is closing. Performing cleanup.")
         window.after(Consts.CLOSE_WINDOW, window.destroy())  # Close the window
+
