@@ -26,12 +26,12 @@ class Move:
 
     @staticmethod
     # Making to bird going up
-    def Jump():
+    def jump():
         Consts.VY = Consts.JUMP
 
     @staticmethod
     # Checking the bird is in the limits of the game
-    def Limits(canvas,bird) -> bool:
+    def birdLimits(canvas,bird) -> bool:
         b_coords = canvas.coords(bird) # Coordinates of the bird
         if b_coords[1] < 0 or b_coords[3] >= Consts.HIGHT:
             return True
@@ -39,7 +39,7 @@ class Move:
 
     @staticmethod
     def moveWalls(canvas,walls:List,side):
-        # Getting the relevant information on the 2 sides
+        # Getting the relevant information on the 2 sides(y2)
         walls_cords = [canvas.coords(wall)[3] for index, wall in enumerate(walls) if index % 2 == 0]
 
         # Random new coords
@@ -72,3 +72,24 @@ class Move:
         return walls
 
 
+    @staticmethod
+    # Checking the bird is in the limits of the game
+    def wallLimits(canvas,bird,walls) -> bool:
+        b_coords = canvas.coords(bird) # Coordinates of the bird
+        walls_cords = [canvas.coords(wall)[3] for index, wall in enumerate(walls) if index % 2 == 0]  # Getting the relevant information on the 2 sides(y2)
+        # On the left wall
+        if b_coords[0] < Consts.WALL_X_COORDS[0]:
+            if not (b_coords[1] > walls_cords[0] and b_coords[1] + Consts.BIRD_DIAMETER < walls_cords[0] + Consts.WALL_SPACE):
+                return True
+
+        # On the right wall
+        if b_coords[2] > Consts.WALL_X_COORDS[1]:
+            if not (b_coords[1] > walls_cords[1] and b_coords[1] + Consts.BIRD_DIAMETER < walls_cords[1] + Consts.WALL_SPACE):
+                return True
+
+        return False  # Didn't passed the limits
+
+    @staticmethod
+    # Checking the bird is in the limits of the game
+    def limits(canvas,bird,walls) -> bool:  # One True and we lost the game
+        return Move.wallLimits(canvas,bird,walls) or Move.birdLimits(canvas,bird)

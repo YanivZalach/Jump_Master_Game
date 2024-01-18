@@ -28,6 +28,8 @@ class Consts:
     WALL_WIDTH : int = 20
     WALL_SPACE : int = BIRD_DIAMETER * 9
     WALLS_START_Y : float = (HIGHT / 2) - (WALL_SPACE / 2)
+    # For the hitting
+    WALL_X_COORDS : Tuple = (WALL_WIDTH, WIDTH - WALL_WIDTH)  # The x limits to check
     # Frame rate
     FRAME_RATE : float = 0.01
     # Time delay for closing the window

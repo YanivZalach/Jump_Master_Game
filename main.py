@@ -22,7 +22,7 @@ def main():
     # TODO: ADDING A SCORE COUNTER, WITH THE RECORD, REMEMBER FROM GAME TO GAME
 
     # Accepting user input
-    window.bind("<space>", lambda e: Move.Jump())
+    window.bind("<space>", lambda e: Move.jump())
 
 
     # The window main loop
@@ -37,7 +37,7 @@ def main():
             # Moving the walls
             walls : List = Move.toMoveWalles(canvas,walls,start_time)
             # Did we lost
-            if Move.Limits(canvas,bird):
+            if Move.limits(canvas,bird,walls):
                 # Stopping the game
                 break
             # Frame rate
