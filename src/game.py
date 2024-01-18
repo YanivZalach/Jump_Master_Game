@@ -1,7 +1,9 @@
 # Generating a new walls location
 import random
+import time
 # The gui engine
 from tkinter import Canvas, Tk
+from typing import List
 
 from .window import Window
 
@@ -36,7 +38,7 @@ class Move:
         return False  # Didn't passed the limits
 
     @staticmethod
-    def moveWalls(canvas,walls,side):
+    def moveWalls(canvas,walls:List,side):
         # Getting the relevant information on the 2 sides
         walls_cords = [canvas.coords(wall)[3] for index, wall in enumerate(walls) if index % 2 == 0]
 
@@ -53,15 +55,20 @@ class Move:
         return Window.drowWalls(canvas, wallesCreate(new_coords,walls_cords[1]))
 
     @staticmethod
-    def toMoveWalles(canvas, walls, time):
-            if (time - Consts.WALLS_SWITCH_L) % (10 * Consts.FRAME_RATE) < Consts.FRAME_RATE and time > Consts.WALLS_SWITCH_L:
-                print("Switching left wall")
-                return Move.moveWalls(canvas, walls, "l")
+    def toMoveWalles(canvas, walls:List, start_time) -> List:
+        # Currant time
+        c_time = time.time() - start_time
+        # Change the left wall
+        if c_time > Consts.WALLS_SWITCH_STERT_L:
+            Consts.WALLS_SWITCH_STERT_L += Consts.WALL_CYCLE
+            print("Switching left wall")
+            return Move.moveWalls(canvas, walls, "l")
+        # Changing the right wall
+        if c_time > Consts.WALLS_SWITCH_START_R:
+            Consts.WALLS_SWITCH_START_R += Consts.WALL_CYCLE
+            print("Switching right wall")
+            return Move.moveWalls(canvas, walls, "r")
 
-            if (time - Consts.WALLS_SWITCH_R) % (10 * Consts.FRAME_RATE) < Consts.FRAME_RATE and time > Consts.WALLS_SWITCH_R:
-                print("Switching right wall")
-                return Move.moveWalls(canvas, walls, "r")
+        return walls
 
-
-            
 

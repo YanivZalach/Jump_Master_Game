@@ -38,8 +38,12 @@ class Consts:
     A : float = 2 * 2 * HIGHT / (WIDTH/VX)**2
     JUMP : float = -70*A 
     # Time to switch walls
-    WALLS_SWITCH_L : float = WIDTH / VX
-    WALLS_SWITCH_R : float = WALLS_SWITCH_L * 3
+    WALLS_SWITCH : float = (FRAME_RATE/2 + (WIDTH / VX)/2) / 100  # For the python time module, the FRAME_RATE is for synchronising
+    # The starting times
+    WALLS_SWITCH_STERT_L : float = WALLS_SWITCH * 4
+    WALLS_SWITCH_START_R : float = WALLS_SWITCH * 2
+    # The change cycle
+    WALL_CYCLE : float = WALLS_SWITCH * 4
 
 # Walls location
 def wallesCreate(left=Consts.WALLS_START_Y, right=Consts.WALLS_START_Y):

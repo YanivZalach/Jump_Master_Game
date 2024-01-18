@@ -4,6 +4,7 @@ import  random
 
 # The gui engine
 from tkinter import Label, Canvas, Button, Tk
+from typing import List
 
 # Local Libraries
 from src.window import Window
@@ -17,7 +18,7 @@ def main():
     # Drawing the bird
     bird = Window.drowBird(canvas)
     # Drawing the walls
-    walls = Window.drowWalls(canvas)
+    walls : List = Window.drowWalls(canvas)
     # TODO: ADDING A SCORE COUNTER, WITH THE RECORD, REMEMBER FROM GAME TO GAME
 
     # Accepting user input
@@ -34,7 +35,7 @@ def main():
             # Moving the bird
             Move.moveBird(canvas,bird)
             # Moving the walls
-            walls = Move.toMoveWalles(canvas,walls,start_time)
+            walls : List = Move.toMoveWalles(canvas,walls,start_time)
             # Did we lost
             if Move.Limits(canvas,bird):
                 # Stopping the game
@@ -46,10 +47,10 @@ def main():
         game_time = end_time - start_time  # Calculating the game duration
         print("You Lost ",game_time)
         # TODO: ADDING A FUNCTION FOR OTHER GAME
-
     except Exception as e:
         if Consts.DEBUG:
             print("The Error: "+e.__str__())
+
     finally:
         print("Thaks for playing")
 
