@@ -24,6 +24,10 @@ class Consts:
             BIRD_START_XY[0] + BIRD_DIAMETER,
             BIRD_START_XY[1] + BIRD_RADIOS
             )
+    # Walls specifications
+    WALL_WIDTH : int = 20
+    WALL_SPACE : int = BIRD_DIAMETER * 9
+    WALLS_START_Y : float = (HIGHT / 2) - (WALL_SPACE / 2)
     # Frame rate
     FRAME_RATE : float = 0.01
     # Time delay for closing the window
@@ -33,4 +37,38 @@ class Consts:
     VY : float = 0.5 * HIGHT / (WIDTH/VX)  # So it will have the time to get from top to bottom in a round (Physics) * 0.5
     A : float = 2 * 2 * HIGHT / (WIDTH/VX)**2
     JUMP : float = -70*A 
+    # Time to switch walls
+    WALLS_SWITCH_L : float = WIDTH / VX
+    WALLS_SWITCH_R : float = WALLS_SWITCH_L * 3
 
+# Walls location
+def wallesCreate(left=Consts.WALLS_START_Y, right=Consts.WALLS_START_Y):
+    return (
+        (  # Wall 1
+            0,
+            0,
+            Consts.WALL_WIDTH,
+            left
+        ),
+        (  # Wall 2
+            0,
+            left + Consts.WALL_SPACE,
+            Consts.WALL_WIDTH,
+            Consts.HIGHT
+        ),
+        (  # Wall 3
+            Consts.WIDTH - Consts.WALL_WIDTH,
+            0,
+            Consts.WIDTH,
+            right
+        ),
+        (  # Wall 4
+            Consts.WIDTH - Consts.WALL_WIDTH,
+            right + Consts.WALL_SPACE,
+            Consts.WIDTH,
+            Consts.HIGHT
+        ),
+    )
+
+# Stating location
+WALLS_START : Tuple = wallesCreate()

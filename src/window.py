@@ -4,7 +4,7 @@
 from tkinter import Label, Canvas, Button, Tk
 
 # The game consts
-from .const import Consts
+from .const import Consts, WALLS_START
 
 class Window:
     @staticmethod
@@ -37,6 +37,14 @@ class Window:
         # Drawing the bird, in the BIRD_COLOR color
         bird_ball = canvas.create_oval(*coordinates, fill=Consts.BIRD_COLOR)
         return bird_ball
+
+    @staticmethod
+    def drowWalls(canvas, coordinates = WALLS_START):  # The default is for the start of the game
+        # Drawing the Walls, in the WALL_COLOR color
+        walls = []  # List of the 4 walls
+        for wall_cords in coordinates:
+            walls.append(canvas.create_rectangle(*wall_cords,fill=Consts.WALL_COLOR))
+        return walls
 
     @staticmethod
     # Stopping the game
