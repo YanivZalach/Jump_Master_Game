@@ -1,9 +1,3 @@
-# Jump_Master_Game
-
-Jump master game in python
-
-How to install Tkiner in Linux: [Here](https://www.geeksforgeeks.org/how-to-install-tkinter-on-linux/).
-
 # Python Ninja Master Game 🐦
 
 Welcome to Python Ninja Master, a thrilling and fast-paced game where you control a ninja ball navigating through a perilous landscape filled with forbidden walls. Sharpen your reflexes and showcase your Python programming skills as you guide the bird through the obstacles, avoiding forbidden walls to reach new heights!
