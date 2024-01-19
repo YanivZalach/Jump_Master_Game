@@ -1,8 +1,6 @@
 # Generating a new walls location
 import random
 import time
-# The gui engine
-from tkinter import Canvas, Tk
 from typing import List
 
 from .window import Window
@@ -61,12 +59,14 @@ class Move:
         # Change the left wall
         if c_time > Consts.WALLS_SWITCH_STERT_L:
             Consts.WALLS_SWITCH_STERT_L += Consts.WALL_CYCLE
-            print("Switching left wall")
+            if Consts.DEBUG:  # Printing in debugging mode
+                print("Switching left wall")
             return Move.moveWalls(canvas, walls, "l")
         # Changing the right wall
         if c_time > Consts.WALLS_SWITCH_START_R:
             Consts.WALLS_SWITCH_START_R += Consts.WALL_CYCLE
-            print("Switching right wall")
+            if Consts.DEBUG:  # Printing in debugging mode
+                print("Switching right wall")
             return Move.moveWalls(canvas, walls, "r")
 
         return walls
