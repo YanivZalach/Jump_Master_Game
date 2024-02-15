@@ -66,7 +66,7 @@ def gamePress():
 # The main function
 def main():
     # Accepting user input
-    window.bind("<space>", lambda e: gamePress())
+    window.bind("<space>", lambda _: gamePress())
     # The window main loop
     try:
         gameRun(window,canvas)
